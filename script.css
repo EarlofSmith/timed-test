@@ -1,0 +1,56 @@
+:root {
+    --dark: black;
+    --light: white;
+    --red: rgb(228, 70, 70);
+    --blue: rgb(0, 123, 255);
+    --green: rgb(0, 255, 0);
+    font-size: 100%;
+}
+ 
+body {
+    background: var(--dark);
+    color:var(--light) ;
+    /* display:inline; */
+    
+}
+
+h2 {
+    font-size: 250%;
+    background: var(--light);
+    color: var(--dark);
+}
+.btn {
+    font-size: 125%;
+}
+.initials {
+    font-size: 150%;
+}
+.score {
+    background: var(--light);
+    color: var(--dark);
+    font-size: 125%;
+}
+.timer {
+    color: var(--green);
+    text-align: center;
+}
+.btn-grid {
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    grid-gap: 5px;
+    margin: 20px 0;
+}
+/* .show {
+    display: flex;
+}
+
+.hide {
+    display: none;
+} */
+.container {
+    padding: 20px;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
