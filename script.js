@@ -97,11 +97,6 @@ var questions = [
   }
 
   var startGame = function() {
-    //add classes to show/hide start and quiz screen
-    // containerStartE1.classList.add('hide');
-    // containerStartE1.classList.remove('show');
-    // containerQuestionE1.classList.remove('hide');
-    // containerQuestionE1.classList.add('show');
     resetQuiz
     //Shuffle the questions so they show in random order
     arrayRandomQuestions = questions.sort(() => Math.random() - 0.5)
@@ -157,9 +152,7 @@ var questions = [
   }
   
   var showScore = function() {
-    // containerQuestionE1.classList.add("hide");
-    // containerEndE1.classList.remove("hide");
-    // containerEndE1.classList.add("show");
+  
 
     var userScore = document.createElement("p");
     userScore.innerText = ("Your score is " + score + "!");
