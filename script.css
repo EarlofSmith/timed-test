@@ -10,7 +10,6 @@
 body {
     background: var(--dark);
     color:var(--light) ;
-    /* display:inline; */
     
 }
 
@@ -18,9 +17,11 @@ h2 {
     font-size: 250%;
     background: var(--light);
     color: var(--dark);
+    padding: 20;
 }
 .btn {
     font-size: 125%;
+   
 }
 .initials {
     font-size: 150%;
@@ -29,6 +30,7 @@ h2 {
     background: var(--light);
     color: var(--dark);
     font-size: 125%;
+    padding: 15;
 }
 .timer {
     color: var(--green);
@@ -40,17 +42,30 @@ h2 {
     grid-gap: 5px;
     margin: 20px 0;
 }
-/* .show {
-    display: flex;
-}
-
-.hide {
-    display: none;
-} */
-.container {
-    padding: 20px;
+.prompt {
+    padding: 30px;
     flex-direction: column;
-    width: 50%;
+    width: 85%;
     margin: auto;
     text-align: center;
+}
+
+.container {
+    padding: 30px;
+    flex-direction: column;
+    width: 65%;
+    margin: auto;
+    text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .btn {
+        width: 100%;
+        font-size: 3.0vw;
+    }
+
+    #question {
+        font-size: 4.5vw;
+    }
 }

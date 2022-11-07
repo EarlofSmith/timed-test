@@ -42,11 +42,11 @@ var questions = [
   },
   { q: 'What is getItem commonly used for?', 
     a: '2. local storage', 
-    choices: [{choice: '1. adding drama'}, {choice: '2. local storage'}, {choice: '3. online shopping'}, {choice: '4. naming a variable'}]
+    choices: [{choice: '1. adding photos'}, {choice: '2. local storage'}, {choice: '3. link to website'}, {choice: '4. naming a variable'}]
   },
  { q: 'JavaScript was invented by Brendan Eich in what year?', 
     a: '1. 1995', 
-    choices: [{choice: '1. 1995'}, {choice: '2. Roaring twenties'}, {choice: '3. 2005'}, {choice: '4. 2000'}]
+    choices: [{choice: '1. 1995'}, {choice: '2. 1987'}, {choice: '3. 2005'}, {choice: '4. 2000'}]
   },
  { q: 'Inside which HTML element do we put the javascript?', 
     a: '3. <script>', 
@@ -61,10 +61,6 @@ var questions = [
 
  //if go back button is hit on high score page
  var resetQuiz = function () {
-    containerScoreE1.classList.add("hide")
-    containerScoreE1.classList.remove("show")
-    containerStartE1.classList.remove("hide")
-    containerStartE1.classList.add("show")
     containerScoreResultsE1.removeChild(containerScoreResultsE1.lastChild)
     questionIndex = 0
     gameover = ""
@@ -72,7 +68,7 @@ var questions = [
     score = 0
  }
 
-//  timmer function for quiz set to 60 seconds
+//  timmer function for quiz set to 20 seconds
  var setTime = function () {
     timeleft = 20;
   
@@ -89,7 +85,8 @@ var questions = [
         timerE1.textContent = 0
         clearInterval(timercheck)
         resetAnswers()
-        questionsE1.innerText = ("You're out of time!!")
+        questionsE1.innerText = ("You're out of time!!");
+        timerE1.style.color = 'red';
 
     }
   
@@ -97,7 +94,8 @@ var questions = [
   }
 
   var startGame = function() {
-    resetQuiz
+
+    // resetQuiz
     //Shuffle the questions so they show in random order
     arrayRandomQuestions = questions.sort(() => Math.random() - 0.5)
     setTime()
@@ -114,7 +112,7 @@ var questions = [
         answerButtonsE1.removeChild(answerButtonsE1.firstChild)
     };
   };
-
+// show the questions index as well as creates the answer buttons
   var showQuestions = function(index) {
     questionsE1.innerText = index.q
     for (var i = 0; i < index.choices.length; i++) {
@@ -126,20 +124,19 @@ var questions = [
         answerButtonsE1.appendChild(answerbutton)
     }
   }
-  var correct = function(){};
-  var wrong = function(){};
-
+// check for correct answers
   var answerCheck = function(event) {
     var userPick = event.target
         if(arrayRandomQuestions[questionIndex].a === userPick.innerText){
-            correct()
+            // correct answer
             score = score + 20
             timeleft = timeleft +5;
         } else {
-            wrong()
+            // wrong answer
             score = score -5;
             timeleft = timeleft -5;
         };
+        // get shuffled questions and displys them till they are done then ends game.
         questionIndex++
             if (arrayRandomQuestions.length > questionIndex + 1) {
                 gitQuestion()
@@ -150,15 +147,13 @@ var questions = [
                 questionsE1.innerText = ("Quiz Complete!!")
             }
   }
-  
+  // shows users score
   var showScore = function() {
-  
-
     var userScore = document.createElement("p");
     userScore.innerText = ("Your score is " + score + "!");
     containerScoreResultsE1.appendChild(userScore);
   }
-
+// creates scores and stops page from clearing. prompts aleart if noting is entered
   var createScore = function(event) {
     event.preventDefault()
     var initials =document.querySelector("#initials").value;
@@ -174,6 +169,7 @@ var questions = [
         score: score
     }
 
+// push and sort highscores
     highScores.push(highScore);
     highScores.sort((a,b) => {return b.score-a.score});
 
@@ -188,14 +184,9 @@ var questions = [
         scoreListE1.appendChild(highScoreEl);
     }
 
-    saveScore();
-    // displayScore();
-  }
-// saves score to local storage
-  var saveScore = function() {
-    localStorage.setItem("highScores", JSON.stringify(highScores))
   }
 
+// delete high scores
   var clearScore = function() {
     highScores = [];
     while (scoreListE1.firstChild) {
@@ -204,8 +195,12 @@ var questions = [
 
     localStorage.clear(highScores)
   }
-  btnStartE1.addEventListener("click", startGame)
+//   start button
+  btnStartE1.addEventListener("click", startGame,)
+//   reset button
   btnBackE1.addEventListener("click", resetQuiz )
+// submit button for initials
   containerInitialsE1.addEventListener("submit", createScore)
+// delete high scores button
   btnClearE1.addEventListener("click", clearScore)
 
